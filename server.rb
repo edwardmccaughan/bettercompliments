@@ -28,7 +28,7 @@ get '/postdonate' do
   if params[:status] == "DONATION_COMPLETE"
     @compliment = Compliments.get_compliment_from_order_id(params[:donation_client_reference])
 
-    Twitter.update("#{compliment.twitter_handle}, you are #{compliment.compliment}")
+    Twitter.update("#{@compliment.twitter_handle}, you are #{@compliment.compliment}")
 
     erb :thanks
   else
