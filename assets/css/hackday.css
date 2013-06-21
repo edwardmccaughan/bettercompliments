@@ -1,0 +1,23 @@
+#collaborators {
+  text-align: center;
+}
+
+.hero-unit {
+  border-radius: 1.5em;
+}
+
+
+.btn-really-large {
+  padding: 15px 45px;
+  font-size: 25px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+
+/* per page styles */
+
+
+#index form { margin-top:3em;}
+#index #betterplace_information { margin-top:3em;}
