@@ -1,0 +1,89 @@
+<div id="how_it_works">
+  <h1> How to integrate betterplace.org into your application </h1>
+
+  <h3> How do I construct a link to the donation form? </h3>
+
+  <p>
+    Normally users donate by browsing www.betterplace.org and clicking the donate link, but you can create a link to the donation form
+    that will redirect back to your application when the user donates:
+  </p>
+  <p>
+    <code> https://www.betterplace.dev/de/projects/1114/client_donations/new?client_id=bettercompliments&donation_presenter[donation_client_reference]=6032346&donation_presenter[donation_amount]=6</code>
+  </p>
+  <p>
+    It's a pretty big url, so here's a breakdown of the different parts:
+  </p>
+
+  <table class="table table-bordered">
+    <tr>
+      <td class="url"> <code> https://www.betterplace.dev/ </code></td>
+      <td> The base domain for betterplace.org </td>
+    </tr>
+
+    <tr>
+      <td class="url"><code> /de </code> </td>
+      <td> choose /de for german or /en for english language on the donation form </td>
+    </tr >
+
+    <tr>
+      <td class="url"><code>  /projects/1114 </code></td>
+      <td> the receiver type and id of the donation. For type, your options are "projects", "groups" (fundraising events) and "organisations". To find a worthwhile reciever, search on https://www.betterplace.org, then take the id from the url of the project or fundraising event page, eg: www.betterplace.dev/projects/1114 </td>
+    </tr>
+
+    <tr>
+      <td class="url"><code>  /client_donations/new? </code></td>
+      <td> the path to the client donation form </td>
+    </tr>
+
+    <tr>
+      <td class="url"><code>  client_id=bettercompliments </code></td>
+      <td>
+        you'll need to register your application and callback url with betterplace (hackathon@betterplace.org, or talk to a developer)
+        and then pass in your client_id to the donation form so that it can redirect to the callback url. You can pick whatever integer
+        number you like and it can (and probably should, depending on your application) be different every time.
+      </td>
+    </tr>
+
+    <tr>
+      <td class="url"><code>  &donation_presenter[donation_client_reference]=6032346 </code></td>
+      <td>
+        When the user completes the donation, they'll be redirected back to your site via your callback url. You'll need some way for your
+        application to know what donation corresponds to which user, so you can pass in a reference number that your application can later use
+        to look up "order" information.
+      </td>
+    </tr>
+
+    <tr>
+      <td class="url"><code>  &donation_presenter[donation_amount]=6 </code></td>
+      <td> you can pre-set a donation amount in euro </td>
+    </tr>
+  </table>
+
+    <h3> How does the callback url work? </h3>
+    <p>
+      When the user finishes their donation, betterplace.org will redirect their browser back to your site with some parameters so
+      your application can decide what to do now that the user has donated.
+    </p>
+    <p>
+      You'll need to register your callback url with the betterplace team to make this work (email hackathon@betterplace.org).
+      If your callback url is <code>http://www.rocketsurgery.com/callback.php</code>, and you send them to the donation form with a donation_client_reference of 12345 then the user will be redirected to <code>http://www.rocketsurgery.com/callback.php?status=DONATION_COMPLETE&donation_client_reference=12345</code>
+    </p>
+    <table class="table table-bordered">
+      <tr>
+        <td class="url"> <code> http://www.rocketsurgery.com/callback.php?</code></td>
+        <td> Your callback url</td>
+      </tr>
+      <tr>
+        <td class="url"> <code> status=DONATION_COMPLETE</code></td>
+        <td> A status for whether the donation was successful or not</td>
+      </tr>
+      <tr>
+        <td class="url"> <code> donation_client_reference=12345</code></td>
+        <td> The donation_client_reference that you passed in to the donation form in the previous step </td>
+      </tr>
+
+
+    </table>
+
+
+</div>

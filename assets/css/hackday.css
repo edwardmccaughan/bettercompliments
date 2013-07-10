@@ -15,9 +15,16 @@
   border-radius: 10px;
 }
 
+#content {padding-top: 60px}
+
 
 /* per page styles */
 
 
 #index form { margin-top:3em;}
 #index #betterplace_information { margin-top:3em;}
+
+
+#how_it_works td.url {
+  /*font-weight: bold;*/
+}
